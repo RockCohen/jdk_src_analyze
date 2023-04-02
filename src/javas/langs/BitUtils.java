@@ -40,9 +40,28 @@ public class BitUtils {
         return bits;
     }
 
+    public static boolean isEqual(Bit a, Bit b) {
+        return a.equals(b);
+    }
+
+    public static Bit and(Bit a, Bit b) {
+        return a.and(b);
+    }
+
+    public static Bit or(Bit a, Bit b) {
+        return a.or(b);
+    }
+
+    public static Bit xor(Bit a, Bit b) {
+        return a.xor(b);
+    }
 
     public static Bit negate(Bit bit) {
         bit.negate();
         return bit;
     }
+
+
+
+
 }

@@ -127,10 +127,30 @@ public class Bit {
         return String.valueOf(bit);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if ( !(o instanceof Bit)) {
+            throw new IllegalArgumentException("the parameter o's type is not allowed,must be Bit!");
+        }
+        Bit b = (Bit) o;
+        return this.bit == b.bit;
+    }
+
     /**
      * 取反
      */
     public void negate() {
         bit = (byte) (bit == 1 ? 0 : 1);
+    }
+
+    public Bit and(Bit bit) {
+        return new Bit( this.bit & bit.bit);
+    }
+    public Bit or(Bit bit) {
+        return new Bit(this.bit | bit.bit);
+    }
+
+    public Bit xor(Bit bit) {
+        return new Bit(this.bit ^ bit.bit);
     }
 }
