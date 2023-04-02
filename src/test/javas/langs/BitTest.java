@@ -5,7 +5,7 @@ import javas.langs.BitUtils;
 
 public class BitTest {
     public static void main(String[] args) {
-        test2();
+        test3();
     }
     public static void  test1() {
         System.out.println(Bit.getBit(0, 1));
@@ -22,5 +22,9 @@ public class BitTest {
         for(Bit bit : bits2) {
             System.out.print(bit+" ");
         }
+    }
+    public static void test3() {
+        Bit bit = new Bit(new StringBuffer("01"));
+        System.out.println(bit);
     }
 }

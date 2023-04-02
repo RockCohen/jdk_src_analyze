@@ -1,11 +1,20 @@
 package javas.langs;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * 暂不支持枚举类型的bit提取
  */
 public class Bit {
     // 使用byte来存储一个bit
     private  byte bit;
+
+    public static Bit ONE = new Bit(1);
+
+    public static Bit ZERO = new Bit(0);
 
     public Bit(boolean b) {
         bit = (byte) (b ? 1 : 0);
@@ -60,6 +69,14 @@ public class Bit {
             throw new IllegalArgumentException("the parameter is not right! only 1 or 0 are allowed!");
         }
         bit = l.byteValue();
+    }
+    public Bit(CharSequence s) {
+        String str = s.toString();
+        boolean b = str.equals("0") || str.equals("00") || str.equals("0x0") || str.equals("1") || str.equals("01") || str.equals("0x1");
+        if (!b) {
+            throw new IllegalArgumentException("the parameter s is not match!");
+        }
+        bit = (byte) Integer.parseInt(str);
     }
 
     /**
