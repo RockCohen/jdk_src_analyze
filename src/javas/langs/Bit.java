@@ -1,10 +1,5 @@
 package javas.langs;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-
 /**
  * 暂不支持枚举类型的bit提取
  */
