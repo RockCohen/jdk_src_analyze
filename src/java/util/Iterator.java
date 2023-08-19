@@ -115,6 +115,8 @@ public interface Iterator<E> {
      * @throws NullPointerException if the specified action is null
      * @since 1.8
      */
+    // 实现迭代器元素的流水线处理
+    // 流水线的实现交给Consumer的accept方法
     default void forEachRemaining(Consumer<? super E> action) {
         Objects.requireNonNull(action);
         while (hasNext())
