@@ -108,6 +108,7 @@ import sun.misc.SharedSecrets;
 public class ArrayList<E> extends AbstractList<E>
         implements List<E>, RandomAccess, Cloneable, java.io.Serializable
 {
+    // 序列化UID
     private static final long serialVersionUID = 8683452581122892189L;
 
     /**
@@ -135,7 +136,11 @@ public class ArrayList<E> extends AbstractList<E>
      * empty ArrayList with elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA
      * will be expanded to DEFAULT_CAPACITY when the first element is added.
      */
-    // 缓存
+    // 元素存储器件
+    /*
+    事实上，该字段通过transient修饰，不能被序列化。
+    ArrayList的序列化是通过实现writeObject与readObject方法实现的。
+     */
     transient Object[] elementData; // non-private to simplify nested class access
 
     /**
@@ -776,7 +781,8 @@ public class ArrayList<E> extends AbstractList<E>
         // Write out element count, and any hidden stuff
         int expectedModCount = modCount;
         s.defaultWriteObject();
-
+        // 先写入size字段。
+        // 再写入element字段
         // Write out size as capacity for behavioural compatibility with clone()
         s.writeInt(size);
 
@@ -784,7 +790,8 @@ public class ArrayList<E> extends AbstractList<E>
         for (int i=0; i<size; i++) {
             s.writeObject(elementData[i]);
         }
-
+        // 防止序列化时候的并发修改。
+        // 这一招还是可以学的，参考当前系统的version字段
         if (modCount != expectedModCount) {
             throw new ConcurrentModificationException();
         }
